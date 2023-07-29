@@ -1,0 +1,23 @@
+name: Version Bump Test
+
+on:
+  push:
+
+jobs:
+  bump:
+    name: Get Bumped Version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3
+
+      - name: Determine Version Bump Action
+        id: version
+        uses: PenPow/determine-version-bump-action@1.1
+
+      - name: Log Output
+        run: |
+          echo Bumped: ${{ steps.version.outputs.bumpedVersion }}
+          echo Change: ${{ steps.version.outputs.versionBump }}
+        shell: bash
+        
